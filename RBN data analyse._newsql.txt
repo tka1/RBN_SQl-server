@@ -1,4 +1,4 @@
-  SELECT   'RBN' as title,  a.callsign AS decall, a.dx AS dxcall, a.freq, a.band, b.["country"] AS country, a.db AS sig_noise, a.date AS date_time, a.date AS insert_time, a.mode, c.["continent"] AS de_continent, b.["continent"] AS dx_continent, 
+  SELECT    'RBN' as title,  a.callsign AS decall, a.dx AS dxcall, a.freq, a.band, b.["country"] AS country, a.db AS sig_noise, a.date AS date_time, a.date AS insert_time, a.mode, c.["continent"] AS de_continent, b.["continent"] AS dx_continent, 
                          c.["country"] AS de_country, a.tx_mode AS skimmode
 FROM            [master].[dbo].[cqww2024] AS a LEFT OUTER JOIN
                              (SELECT DISTINCT ["prim_dxcc_prefix"], ["country"], ["continent"]
@@ -10,3 +10,4 @@ where a.tx_mode='CW'
 
 AND a.date >= Convert(datetime, '2024-11-23 00:00')
     AND a.date < Convert(datetime, '2024-11-24 00:00:00')
+	and  (a.band = '160m' or a.band = '80m' or a.band = '40m' or a.band = '20m' or a.band = '15m' or a.band = '10m')
