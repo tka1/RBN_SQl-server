@@ -1,0 +1,5 @@
+SELECT DATEPART(MONTH,date ) AS month,band,mode,callsign,tx_mode, count (*) AS SpotCount
+  FROM master.dbo.RBN2024
+  where callsign !='callsign'
+  and band != ''
+  group by DATEPART(MONTH,date ),band,mode,callsign,tx_mode
